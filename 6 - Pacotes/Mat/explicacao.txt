@@ -1,0 +1,54 @@
+Basicamente, para criação de um pacote npm para ser utilizado posteriormente
+deverá ser criado os métodos, e importado para um index do pacote, como o exemplo abaixo:
+
+=======================================================================
+Arquivo areas (funções que calculam áreas)                            |
+=======================================================================
+
+module.exports.area_quadrado = function quadrado(lado) {
+    return lado * lado;
+  };
+  module.exports.area_retangulo = function retangulo(base, altura) {
+    return base * altura;
+  };
+  module.exports.area_triangulo = function triangulo(base, altura) {
+    return (base * altura) / 2;
+  };
+  module.exports.area_circulo = function circulo(raio) {
+    const pi = 3.1416;
+    return pi * raio * raio;
+  };
+
+=======================================================================
+Arquivo operações Básicas (calculam operações básicas)                |
+=======================================================================
+
+  module.exports.soma = function soma(a, b) {
+  return a + b;
+};
+module.exports.multiplacao = function multiplacao(a, b) {
+  return a * b;
+};
+module.exports.divisao = function divisao(a, b) {
+  return a / b;
+};
+module.exports.subtracao = function subtracao(a, b) {
+  return a - b;
+};
+
+=======================================================================
+Index do arquivo, que será importado os componentes acima, e exportado|
+com o module.exports ambas variaveis que estão recebendo o export dos |
+componentes, um adendo é, que será exportado os arquivos do index.js  |
+juntamente com spread operator, para pegar todos os valores dos export|
+dos componentes.                                                      |
+                                                                      |
+Logo após, é do index que será extraido todos os dados para instalar o|
+pacote através do npm install "nomedopacote" em outro projeto.        |
+=======================================================================
+
+const operacoesBasicas = require('./operacoesBasicas');
+const areas = require('./areas');
+
+module.exports = {...operacoesBasicas,...areas};
+  
