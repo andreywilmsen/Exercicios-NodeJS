@@ -1,0 +1,53 @@
+Basicamente, o module.exports é um objeto, sendo assim, ele será um objeto mesmo que sem passar nenhum valor a ele (exemplo: module.exports ~~~~~ RESULTADO: {}).
+Sendo assim, para passar mais de um valor ao module.exports, deverá passa-los como atributos e metodos de um objeto, por exemplo:
+
+module.exports = {
+    mult: (x,y) =>{
+        return x*y
+    },
+    soma: (x,y) =>{
+        return x+y
+    }
+}
+
+^ passar metódos como métodos em uma vez só ^
+
+Ou também poderá ser passado da seguinte maneira:
+
+module.exports.mult = function mult (x,y){return x*y}; 
+module.exports.soma = function soma (x,y){return x+y};
+
+Ambos acima serão o mesmo resultado, ou seja: 
+
+module.exports = {
+    mult: (x,y) =>{
+        return x*y
+    },
+    soma: (x,y) =>{
+        return x+y
+    },
+}
+
+Portanto, se houver declarado valores através de metodos ou atributos ao objeto module.exports, e por ultimo
+ser passado o valor dessa maneira:
+
+module.exports = 5
+apagará todos os valores contidos dentro do module.exports, pois está sendo declarado um novo valor do module.exports, substituindo os atributos a ele atribuidos anteriormente (soma, mult).
+
+================================================================================================
+
+Para fazer o require, poderá ser feito das seguintes maneiras:
+
+let calc = require('./calc);
+
+console.log(calc.mult(2,5));
+
+
+Ou também poderá ser feito dessa maneira:
+
+
+let mult = require('./calc').mult;
+let soma = require('./calc').soma;
+
+console.log(mult(2,4));
+console.log(soma(2,4));

@@ -1,0 +1,69 @@
+O core module fs permite manipular arquivos através do node.js
+
+Basicamente são os seguintes métodos que poderão ser invocados, sendo eles:
+
+fs.writeFile -> cria arquivos
+fs.readFile -> lê arquivos
+fs.unlink -> deleta arquivos
+fs.appendFile -> atualiza arquivos
+fs.rename -> renomeia arquivos
+
+são compostos da seguinte forma
+
+fs.writeFile('nome do arquivo.txt',(err) => {
+    if(err){
+        throw err;
+    }
+    console.log('Criado com sucesso');
+});
+
+====================================================
+
+====================================================
+
+fs.readFile('nomedoarquivo.txt', 'UTF8', (err,data) =>{
+    if(err){
+        throw err;
+    }
+    console.log(data);
+})
+
+====================================================
+
+====================================================
+
+fs.appendFile('nomedoarquivo.txt','atualizar com esse texto',(err)=>{
+    if(err){
+        throw err;
+    }
+    console.log('Atualizado com sucesso');
+});
+
+====================================================
+
+====================================================
+
+fs.unlink('nomedoarquivo.txt',(err) =>{
+    if(err){
+        throw err;
+    }
+    console.log('Arquivo deletado com sucesso!');
+})
+
+====================================================
+
+====================================================
+
+fs.rename('nomedoarquivo.txt','novonomedearquivo.txt',(err) =>{
+    if(err){
+        throw err;
+    }
+    console.log('Arquivo renomeado com sucesso');
+})
+
+====================================================
+
+====================================================
+
+Lembrando que esse core module pode ser utilizado com diversos outros modulos, inclusive o process.argv para pegar argumentos da linha de comando do terminal ;)
+
