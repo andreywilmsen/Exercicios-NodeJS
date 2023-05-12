@@ -10,5 +10,4 @@ module.exports.area_quadrado = function quadrado(lado) {
   module.exports.area_circulo = function circulo(raio) {
     const pi = 3.1416;
     return pi * raio * raio;
-  };
-  
+}

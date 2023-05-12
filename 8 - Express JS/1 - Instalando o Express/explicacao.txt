@@ -1,0 +1,15 @@
+O framework express é utilizado para servir as aplicações do lado do server-side para o client-side
+sendo assim, é muito comum utiliza-lo para essa aplicaçãõ
+
+Desta maneira, o servidor fica "escutando" as requisições do client-side, e servirá os arquivos que está
+sendo solicitado, portanto, há uma certa estrutura que é utilizada para formular o inicio da formação
+desse server-side, sendo ela:
+
+const express = require('express'); // UTILIZADO PARA APLICAR O EXPRESS A PÁGINA
+const path = require('path'); // CORE-MODULE UTILIZADO PARA UTILIZAR A URL DA APLUCAÇÃO (NORMALMENTE UTILIZADA PARA PEGAR O CAMINHO DA URL E SERVIR OS ARQUIVOS CORRETOS);
+const app = express(); //ATRIBUI AS FUNCIONALIDADES DO EXPRESS PARA A CONSTANTE APP PARA PUDER SER UTILIZADA
+const PORT = n° da porta;
+
+app.listen(PORT, () => {  // .LISTEN É UTILIZADO PARA O SERVIDOR FICAR "ESCUTANDO" AS REQUISIÇÕES DO CLIENT-SIDE
+    console.log('Server is running in ${PORT});
+})
