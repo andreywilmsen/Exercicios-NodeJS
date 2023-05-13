@@ -49,3 +49,26 @@ URL dessa maneira http://localhost:8080/aluno/2;
                                 res.json(aluno);
                             })
                             
+6 - Criada as rotas, colocamos as rotas referente alunos
+alunos em um arquivo js separado, agrupando tudo em
+um arquivo unico.
+
+7 - Utilizamos o Router do express.js para adicionar um
+sentido mais nítido para a aplicação e gerencia-la da 
+forma correta, portanto, no arquivo aluno.js na pasta
+router, adicionamos a rota "/" que pega a requisição
+do corpo da aplicação, e caso contenha um aluno, será
+renderizado na tela com o formato JSON, caso contrario
+entrara no else forçando o next para o próximo middleware
+
+8 - Logo após foi criada a rota "/all" que retorna a array
+geral com todos os alunos contidos no array.
+
+9 - Por ultimo, é criado a rota "/:id" que retornara o
+aluno através da url acessada, por exemplo: https://localhost
+:8080/aluno/2, logo após foi utilizado o module.exports para
+exportar o router.
+
+10 - No index da aplicação, foi importado o router para
+variavel aluno, e logo após foi atribuida as rotas ao
+app.use("/aluno",aluno);
