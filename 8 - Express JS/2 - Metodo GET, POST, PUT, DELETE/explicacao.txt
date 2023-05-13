@@ -1,0 +1,44 @@
+Utilizando o express,  iremos organizar as rotas da aplicação as quais servirão arquivos
+e dados para o client-side conforme a solicitação, logo, existem 4 rotas principais para
+efetuar esse serviço, sendo elas:
+
+GET(Receber) - Essa rota é utilizada para RECEBER algo do client-side, para eventualmente
+trata-la da forma necessária, sendo tratar o dado através de uma regra de negócios no 
+back-end, ou simplesmente armazena-la no banco de dados.
+
+syntax: 
+
+app.get("rota utilizada, ex: /paginateste", (req,res) =>{
+    res.send(bloco de resposta da rota)
+})
+
+
+POST(Postar) - Essa rota é utilizada para POSTAR algo do client-side no server-side, 
+para trata-la da forma necessária, por exemplo, armazena-la no banco de dados.
+
+syntax: 
+
+app.post("rota utilizada, ex: /paginateste", (req,res) =>{
+    res.send(bloco de resposta da rota)
+})
+
+
+PUT(Colocar) - Essa rota é utilizada para COLOCAR algo do client-side no server-side, 
+para trata-la da forma necessária, por exemplo, substituir algo do banco de dados.
+
+syntax: 
+
+app.put("rota utilizada, ex: /paginateste", (req,res) =>{
+    res.send(bloco de resposta da rota)
+})
+
+
+DELETE(Deletar) - Essa rota é utilizada para DELETAR algo do server-side, 
+por exemplo, deletar algo do banco de dados.
+
+syntax: 
+
+app.delete("rota utilizada, ex: /paginateste", (req,res) =>{
+    res.send(bloco de resposta da rota)
+})
+

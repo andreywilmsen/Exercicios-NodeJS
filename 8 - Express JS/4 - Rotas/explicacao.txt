@@ -1,0 +1,51 @@
+Nesse exercício pratico, foi realizado as funcionalidades da seguinte maneira:
+
+1 - Primeiramente foi criado uma array com varios alunos: 
+
+                                let alunos = [{ id: 0, nome: "Jose" },
+                                { id: 1, nome: "Maria" },
+                                { id: 2, nome: "Joao" },
+                                { id: 3, nome: "Marcos" }]
+
+2 - Logo após foi aplicado a todas as rotas através do app.get o express.urlencoded, para
+identificar que os dados recebidos seriam do formato FORMS.
+
+                    app.use("/", express.urlencoded({ extended: true }));
+
+3 - Logo após, foi criado uma rota /alunos, que a mesma funciona da seguinte forma:
+Primeiro (res.json) explica que os dados que serão mostrados, estão no server-side
+como JSON (array alunos com objetos(aluno) - passo 1), e logo após, dentro dos parênteses (JSON.stringify(alunos)) transforma
+o JSON alunos em uma string apenas.
+
+                                app.get("/alunos", (req, res) => {
+                                    res.json(JSON.stringify(alunos));
+                                })
+
+4 - Depois foi criado uma rota para servir o client-side apenas com o /aluno que será
+informado através do ID, sendo assim, foi criada uma variável aluno, que recebe
+a array alunos[numero do id passado no corpo da requisição pelo client-side].
+Já que a array é composta por vários objetos, o res.json(aluno) será do formato json,
+pois os objetos contidos dentro da array são em formato JSON.
+
+           Passo 1 -         let alunos = [{ id: 0, nome: "Jose" },
+                                { id: 1, nome: "Maria" },
+                                { id: 2, nome: "Joao" },
+                                { id: 3, nome: "Marcos" }]
+
+
+                            app.get("/aluno", (req, res) => {
+                                console.log(req.body);
+                                let aluno = alunos[req.body.id];
+                                res.json(aluno);
+                            })
+
+5 - Logo após foi criada uma roda para servir com a mesma funcionalidade de aluno
+porém, ao invés de pegar o body pela requisição, ele é passado como parametro pela
+URL dessa maneira http://localhost:8080/aluno/2;
+
+                            app.get("/aluno/:id", (req, res) => {
+                                console.log(req.params.id);
+                                let aluno = alunos[req.params.id];
+                                res.json(aluno);
+                            })
+                            

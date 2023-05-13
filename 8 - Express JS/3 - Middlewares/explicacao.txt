@@ -1,0 +1,43 @@
+Os middlewares são basicamente "funções" que serão usadas nas demais rotas, ambas
+contém 3 tipos de parametros, sendo eles a req, res e também a next.
+A req e res tem a mesma significância dos parametros padrões de rotas, ou seja
+a req para requisição disparada do client-side, e a res a resposta para ser enviada 
+do server-side. Exemplo de syntax:
+
+                                let hello = (req,res)=>{
+                                    res.send("Hello world");
+                                }
+
+                                app.get('/', hello);
+
+
+Porém, geralmente os middlewares podem ser utilizados antes dos parâmetros req,res de
+uma rota, por exemplo:
+
+                                app.get('/',middleware,(req,res)=>{
+                                    bloco de codigo;
+                                })
+
+É nesse ponto que entra o parâmetro next dos middlewares, O parametro next é utilizado
+para que, assim que o middleware for executado, que ele mande a "resposta" que terminou
+de ser executado, e assim, está liberado para passar para o proximo middlware, que nesse
+caso, é o (req, res).
+
+                                let consoleBody = (req,res,next)=>{
+                                    console.log(req.body);
+                                    next();
+                                }
+
+                                app.get('/', consoleBody, (req,res)=>{
+
+                                });
+
+
+Também, é muito comum o parametro next ser utilizado para disparar um erro, para interromper
+a execução do proximo erro, sendo assim o erro é passado dentro dos parenteses do next
+
+
+                                let consoleBody = (req,res,next)=>{
+                                    console.log(req.body);
+                                    next('Aqui está acontecendo algum erro!');
+                                }
