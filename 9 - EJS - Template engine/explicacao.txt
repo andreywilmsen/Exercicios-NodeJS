@@ -1,0 +1,119 @@
+O template engine basicamente são pedaços de código que facilitam a estilização de 
+elementos front-end deixando seus resultados dinamicos, pois o mesmo permite utilizar
+javascript no HTML, podendo simplesmente passar variaveis, criar for e if, como também
+criar fragmentos de codigos (elementos) e inserir dinamicamente em um ou mais arquivos
+HTML.
+
+Configuração:
+
+Primeiramente deverá instalar o template engine EJS com (npm i ejs);
+logo após, é necessário configurar o template engine no nosso index.js da seguinte maneira
+
+
+app.set('views', path.join(_dirname,'views'));
+        tipo de engine    -     pasta onde estão as engines (padrão: views)
+
+app.set('view engine','ejs);
+        identificador  qual engine
+        de engine  -   está sendo utilizada
+
+Para renderizar um html ejs utiliza-se na resposta da rota o seguinte padrão:
+
+res.render('nome do arquivo ejs', {objeto a ser passado caso desejado}) - 
+                                  não necessita utilizar o caminho do arquivo, uma vez
+                                  que o caminho ja foi declarado no app.set como acima.
+
+
+Utilização:
+
+Para utilizar o template no HTML utiliza-se da seguinte maneira:
+
+Caso queira imprimir alguma variavel que foi passada no res.render no back-end, faça da
+seguinte forma: <%=obj.id%> (deverá seguir esta sintaxe caso queira imprimir uma variavel
+                            específica);
+
+Agora, caso queira executar um bloco de código como um for, ou um if, utiliza-se da mesma
+sintaxe, porém sem o '=', pois não será impresso, e sim, apenas executado.
+Exemplo de sintaxe: 
+
+**** index.js
+
+let users = [{
+    id: 0,
+    name: "Andrey",
+    phone:"(51) 22222-5555"
+},{
+    id: 2,
+    name: "José",
+    phone:"(51) 22222-5555"
+},{
+    id: 3,
+    name: "Marcos",
+    phone:"(51) 22222-5555"
+}]
+
+app.get{
+        res.render('user',{users: users});
+                                  ******          
+}
+
+**** Template Engine EJS
+
+<% for (let user of users) {%> <%}%>
+                    **** Importante, para loops e ifs, é necessário que a variavel
+                    passada como objeto pelo res.render, bata com a variavel passada
+                    no bloco de código no template, nesse caso, users ****
+
+Include:
+
+O include é utilizado para inserir fragmentos de códigos sempre que chamado em determinado template, 
+por exemplo, é criado um cabeçalho em um arquivo separado, numa pasta chamada
+partials, dentro de views por padrão, por exemplo:
+
+**** /views/partials/navbar.ejs
+
+<style>
+    nav {
+        padding: 20px;
+        background-color: darkred;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    a {
+        color: white;
+        text-decoration: none;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: darkcyan;
+    }
+</style>
+<nav>
+    <h1>Logo</h1>
+    <div>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+    </div>
+</nav>
+
+**** /views/about.ejs
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre</title>
+</head>
+<body>
+    <%- include('./partials/navbar.ejs') %> (aqui será inserido, nessa sintaxe a 
+                                            localização do componente em partials
+                                            que deverá ser inserido, logo, poderá
+                                            ser reaproveitado em outras páginas
+                                            também)
+    <h1>Esse é um texto de sobre!</h1>
+</body>
+</html>
